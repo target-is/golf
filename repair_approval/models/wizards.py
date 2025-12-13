@@ -209,6 +209,34 @@ class RepairApprovalLine(models.Model):
             }
         }
 
+    def write(self, vals):
+        for rec in self:
+            if rec.approve_state == "waiting":
+                raise ValidationError(
+                    "🚫 Editing Not Allowed\n\n"
+                    "This approval line is currently under review.\n"
+                    "You cannot modify it while it is in the approval process.\n\n"
+                    "👉 If you need changes, please delete this line and create a new one."
+                )
+
+            if rec.approve_state == "approved":
+                raise ValidationError(
+                    "✅ Already Approved\n\n"
+                    "This approval line has already been approved and added to the repair parts.\n"
+                    "Its data is locked and cannot be modified.\n\n"
+                    "👉 If you need a change, please create a new one."
+                )
+
+            if rec.approve_state == "rejected":
+                raise ValidationError(
+                    "❌ Line Rejected\n\n"
+                    "This line was rejected.\n"
+                    "Rejected records cannot be edited.\n\n"
+                    "👉 Please create a new one if needed."
+                )
+
+        return super().write(vals)
+
 
 class ApprovalMoveWizard(models.TransientModel):
     _name = "approval.move.wizard"
