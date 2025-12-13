@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_approval_move_wizard,access_approval_move_wizard,model_approval_move_wizard,,1,1,1,1
+access_repair_approval_line_user,access_repair_approval_line_user,model_repair_approval_line,,1,1,1,1
+access_repair_cancel_wizard,repair.cancel.wizard,model_repair_cancel_wizard,,1,1,1,1

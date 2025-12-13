@@ -1,0 +1,43 @@
+<odoo>
+
+    <record id="view_approval_move_wizard" model="ir.ui.view">
+        <field name="name">approval.move.wizard.form</field>
+        <field name="model">approval.move.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Approval Confirmation" class="oe_form_container">
+
+                <sheet>
+
+                    <!-- أيقونة ديناميكية -->
+                    <field name="icon_html" widget="html"/>
+
+                    <!-- نص الرسالة -->
+                    <div style="text-align:center; margin:10px 0;">
+                        <h2 style="font-weight:bold;">
+                            <field name="confirm_text" readonly="1"/>
+                        </h2>
+                    </div>
+
+                    <!-- نص إضافي ثابت -->
+                    <field name="description_html" widget="html"/>
+
+                    <footer>
+                        <button string="Confirm"
+                                type="object"
+                                name="action_confirm"
+                                class="btn-primary"
+                                style="width:120px;"/>
+
+                        <button string="Cancel"
+                                class="btn-secondary"
+                                special="cancel"
+                                style="margin-left:10px; width:120px;"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

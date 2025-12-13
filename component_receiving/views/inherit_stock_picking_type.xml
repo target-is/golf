@@ -1,0 +1,23 @@
+<odoo>
+
+
+    <!-- ######################################################## -->
+    <!-- Add Checkbox on Operation Type Form                      -->
+    <!-- ######################################################## -->
+    <record id="view_picking_type_cr_checkbox" model="ir.ui.view">
+        <field name="name">stock.picking.type.cr.checkbox</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reservation_method']" position="after">
+                <field name="is_component_receiving_enabled"/>
+            </xpath>
+
+            <xpath expr="//field[@name='is_component_receiving_enabled']" position="after">
+                <field name="select_service"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

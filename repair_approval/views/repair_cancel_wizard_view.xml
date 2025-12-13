@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_repair_cancel_wizard_form" model="ir.ui.view">
+        <field name="name">repair.cancel.wizard.form</field>
+        <field name="model">repair.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Repair Order" class="o_form_sheet">
+                <sheet>
+
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Warning!</strong>
+                        This action will cancel the repair order.
+                        Please provide a clear reason.
+                    </div>
+
+                    <group>
+                        <field name="repair_id"/>
+                        <field name="reason"
+                               placeholder="Explain clearly why this repair is being cancelled..."
+                               nolabel="0"/>
+
+
+                    </group>
+                    <div style="text-align:center; margin-top:10px;">
+                        <span class="text-muted"
+                              style="
+              font-size:12px;
+              line-height:1.4;
+              display:inline-block;
+          ">
+                            This reason will be logged and sent to the approver.
+                        </span>
+                    </div>
+
+                    <footer>
+                        <button name="action_confirm_cancel"
+                                string="Confirm Cancellation"
+                                type="object"
+                                class="btn btn-danger"/>
+
+                        <button string="Close"
+                                special="cancel"
+                                class="btn btn-secondary"/>
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

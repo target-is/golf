@@ -1,0 +1,60 @@
+<odoo>
+
+    <record id="view_repair_form_inherit_approval_tab" model="ir.ui.view">
+        <field name="name">repair_order_approval_tab</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+
+        <field name="arch" type="xml">
+            <!-- تعديل قائمة الـ Parts -->
+
+
+            <notebook position="inside">
+                <page string="Additional Parts">
+
+                    <field name="approval_line_ids">
+                        <list editable="bottom">
+
+                            <field name="repair_line_type"/>
+                            <field name="product_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="quantity"/>
+                            <field name="product_uom"/>
+
+                            <field name="badge_state" widget="html"/>
+
+                            <button name="action_send_request"
+                                    type="object"
+                                    string="Send Request"
+                                    class="btn btn-info o_list_button"
+                                    icon="fa-refresh"
+                                    invisible="(approve_state == 'waiting' or approve_state !='draft') or has_sales_access"
+                            />
+                            <button name="open_approve_wizard"
+                                    type="object"
+                                    icon="fa-check"
+                                    string="Approve"
+                                    invisible="not has_sales_access or (approve_state != 'waiting' and approve_state != 'draft')"
+                                    class="btn btn-success"
+                            />
+
+                            <button name="open_reject_wizard"
+                                    type="object"
+                                    icon="fa-times"
+                                    string="Reject"
+                                    invisible="not has_sales_access or (approve_state != 'waiting' and approve_state != 'draft')"
+                                    class="btn btn-danger"
+                            />
+
+
+                        </list>
+                    </field>
+
+                </page>
+
+
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
