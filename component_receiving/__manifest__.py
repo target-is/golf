@@ -9,6 +9,7 @@
         'views/stock_picking_logic.xml',
         'views/RO_logic.xml',
         'views/inherit_stock_picking_type.xml',
+        'views/wizards_repair_order_buttons.xml',
     ],
     'installable': True,
     'application': True,

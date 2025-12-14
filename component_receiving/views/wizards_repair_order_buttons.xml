@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================================================== -->
+    <!-- Wizard 1 : Repair Order Received ?                   -->
+    <!-- ===================================================== -->
+    <record id="view_cr_repair_decision_wizard" model="ir.ui.view">
+        <field name="name">cr.repair.decision.wizard.form</field>
+        <field name="model">cr.repair.decision.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Repair Order Received?">
+                <sheet>
+
+                    <!-- HEADER -->
+                    <div class="oe_title">
+                        <h2>
+                            <i class="fa fa-question-circle text-primary"/>
+                            Repair Order Confirmation
+                        </h2>
+                        <p class="text-muted">
+                            Confirm whether the repair order has been received from the customer.
+                        </p>
+                    </div>
+
+                    <!-- INFO BOX -->
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle me-1"/>
+                        This action will decide the next step of the component receiving workflow.
+                    </div>
+
+                    <!-- OPTIONS -->
+                    <group string="Your Decision">
+                        <field name="option" widget="radio"/>
+                    </group>
+
+                    <!-- FOOTER -->
+                    <footer>
+                        <button name="action_confirm"
+                                type="object"
+                                string="Yes, Received"
+                                class="btn-primary"
+                                icon="fa-check"/>
+
+                        <button string="No / Cancel"
+                                special="cancel"
+                                class="btn-secondary"
+                                icon="fa-times"/>
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ===================================================== -->
+    <!-- Wizard 2 : Create Repair Order                       -->
+    <!-- ===================================================== -->
+    <record id="view_cr_create_ro_wizard" model="ir.ui.view">
+        <field name="name">cr.create.ro.wizard.form</field>
+        <field name="model">cr.create.ro.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Repair Orders">
+                <sheet>
+
+                    <!-- HEADER -->
+                    <div class="oe_title">
+                        <h2>
+                            <i class="fa fa-wrench text-success"/>
+                            Create Repair Order
+                        </h2>
+                        <p class="text-muted">
+                            Choose how to continue with the repair order process.
+                        </p>
+                    </div>
+
+                    <!-- WARNING -->
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle me-1"/>
+                        Creating a repair order will lock this component receiving record.
+                    </div>
+
+                    <!-- OPTIONS -->
+                    <group string="Action">
+                        <field name="option" widget="radio"/>
+                    </group>
+
+                    <!-- FOOTER -->
+                    <footer>
+                        <button name="action_confirm"
+                                type="object"
+                                string="Proceed"
+                                class="btn-primary"
+                                icon="fa-play"/>
+
+                        <button string="Cancel"
+                                special="cancel"
+                                class="btn-secondary"
+                                icon="fa-ban"/>
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
