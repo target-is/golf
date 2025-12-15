@@ -63,7 +63,10 @@ class StockPicking(models.Model):
             tag = self._get_tag_from_service_category(move.service_category)
 
             picking_type = self._find_picking_type_for_service(move.service_category)
-
+            if not picking_type or not picking_type.sequence_id:
+                raise ValidationError(
+                    f"No sequence defined on Picking Type for service category: {move.service_category}"
+                )
             # Create Repair Order
             ro = Repair.create({
                 "product_id": move.product_id.id,
