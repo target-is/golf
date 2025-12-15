@@ -172,7 +172,16 @@ class RepairApprovalLine(models.Model):
                 "activity_type_id": activity_type.id,
                 "user_id": user.id,
                 "summary": "Approval Request Sent",
-                "note": f"Approval needed for: {self.product_id.display_name}",
+                "note": f"""
+                <b>Repair Approval Required</b><br/><br/>
+
+                <b>Repair Order:</b> {self.repair_id.name}<br/>
+                <b>Product:</b> {self.product_id.display_name}<br/>
+                <b>Requested Qty:</b> {self.quantity} {self.product_uom.name}<br/><br/>
+
+                Please review this request and take action:
+                <b>Approve</b> or <b>Reject</b>.
+                        """,
             })
 
 
@@ -210,6 +219,17 @@ class RepairApprovalLine(models.Model):
         }
 
     def write(self, vals):
+        user = self.env.user
+
+        # 👈 لو المستخدم من sales team نسمح بالكتابة عادي
+        if (
+                user.has_group('sales_team.group_sale_salesman') or
+                user.has_group('sales_team.group_sale_salesman_all_leads') or
+                user.has_group('sales_team.group_sale_manager')
+        ):
+            return super().write(vals)
+
+        # 🚫 باقي المستخدمين
         for rec in self:
             if rec.approve_state == "waiting":
                 raise ValidationError(

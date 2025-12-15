@@ -5,7 +5,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/repair_approval_views.xml',
-        'views/wizards.xml',
+        'views/wizards_repair_order_buttons.xml',
         'views/repair_cancel_wizard_view.xml',
         'views/modify_cancel_button_repair.xml',
     ],
